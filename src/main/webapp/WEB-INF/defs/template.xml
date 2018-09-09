@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="common" template="/layout/classic.jsp">
+    <put-attribute name="title" value="Personal Finance" />
+    <put-attribute name="header" value="/layout/header.jsp" />
+    <put-attribute name="footer" value="/layout/footer.jsp" />
+  </definition>
+
+  <definition name="common_nomenu" template="/layout/classic_nomenu.jsp">
+    <put-attribute name="title" value="Personal Finance" />
+    <put-attribute name="header" value="/layout/header_nomenu.jsp" />
+    <put-attribute name="footer" value="/layout/footer.jsp" />
+  </definition>
+
+  <definition name="login" extends="common_nomenu">
+    <put-attribute name="body" value="/jsp/login.jsp" />
+  </definition>
+
+  <definition name="userHome" extends="common">
+    <put-attribute name="title" value="Personal Finance Home" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/userHome.jsp" />
+  </definition>
+  
+  <definition name="addFund" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/addFund.jsp" />
+  </definition>
+  
+  
+  <definition name="updateFund" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/updateFund.jsp" />
+  </definition>
+
+  <definition name="fundAddConfirmation" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/fundAddConfirmation.jsp" />
+  </definition>
+
+  <definition name="viewFunds" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/viewFunds.jsp" />
+  </definition>
+  
+  <definition name="addFolio" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund Folio" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/addFolio.jsp" />
+  </definition>
+  
+  <definition name="fundFolioAddConfirmation" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund Folio" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/fundFolioAddConfirmation.jsp" />
+  </definition>
+
+  <definition name="viewFolios" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/viewFolios.jsp" />
+  </definition>
+  
+  <definition name="addTransaction" extends="common">
+    <put-attribute name="title" value="Add Transaction for a Folio" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/addTransaction.jsp" />
+  </definition>
+  
+  <definition name="transactionAddConfirmation" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund Transaction" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/transactionAddConfirmation.jsp" />
+  </definition>
+  
+  <definition name="viewHoldingInput" extends="common">
+    <put-attribute name="title" value="Add Transaction for a Folio" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/viewHoldingInput.jsp" />
+  </definition>
+  
+  <definition name="viewHoldings" extends="common">
+    <put-attribute name="title" value="View Holdings" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/viewHoldings.jsp" />
+  </definition>
+  
+  <definition name="viewTransaction" extends="common">
+    <put-attribute name="title" value="View Holdings" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/viewTransaction.jsp" />
+  </definition>
+</tiles-definitions>

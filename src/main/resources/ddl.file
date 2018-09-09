@@ -1,0 +1,77 @@
+Hibernate: 
+    
+    create table APP_USER (
+       USER_ID varchar(255) not null,
+        USER_AADHAAR varchar(255),
+        USER_CAN varchar(255),
+        USER_NAME varchar(255),
+        USER_PAN varchar(255),
+        USER_PWD varchar(255),
+        USER_STATUS int4,
+        USER_TYPE varchar(255),
+        primary key (USER_ID)
+    )
+Hibernate: 
+    
+    create table FOLIO_HOLDING (
+       FOLIO_NUMBER varchar(255) not null,
+        FUND_CODE varchar(255) not null,
+        FUND_NAME varchar(255) not null,
+        SCHEME_CATEGORY varchar(255) not null,
+        SCHEME_CODE varchar(255) not null,
+        SCHEME_MODE varchar(255) not null,
+        SCHEME_NAME varchar(255) not null,
+        CREATE_DATE date,
+        LAST_TRANSCTION_DATE date,
+        TOTAL_UNITS float8,
+        UPDATE_DATE date,
+        primary key (FOLIO_NUMBER, FUND_CODE, FUND_NAME, SCHEME_CATEGORY, SCHEME_CODE, SCHEME_MODE, SCHEME_NAME)
+    )
+Hibernate: 
+    
+    create table FOLIO_TRANSACTION (
+       TRANSACTION_ID  bigserial not null,
+        CREATE_DATE date,
+        FOLIO_NUMBER varchar(255),
+        FUND_CODE varchar(255),
+        FUND_NAME varchar(255),
+        SCHEME_CATEGORY varchar(255),
+        SCHEME_CODE varchar(255),
+        SCHEME_MODE varchar(255),
+        SCHEME_NAME varchar(255),
+        TRANSACTION_UNITS float8,
+        TRANSACTION_AMOUNT float8,
+        TRANSACTION_DATE date,
+        TRANSACTION_MODE float8,
+        TRANSACTION_TYPE varchar(255),
+        TRANSACTION_NAV float8,
+        primary key (TRANSACTION_ID)
+    )
+Hibernate: 
+    
+    create table FUND_MASTER (
+       FUND_CODE varchar(255) not null,
+        FUND_NAME varchar(255) not null,
+        SCHEME_CATEGORY varchar(255) not null,
+        SCHEME_CODE varchar(255) not null,
+        SCHEME_MODE varchar(255) not null,
+        SCHEME_NAME varchar(255) not null,
+        BASE_NAV float8,
+        BASE_NAV_DATE date,
+        CREATE_DATE date,
+        CREATE_BY varchar(255),
+        NAV float8,
+        NAV_DATE date,
+        SCHEME_STATUS int4,
+        UPDATE_DATE date,
+        UPDATE_BY varchar(255),
+        primary key (FUND_CODE, FUND_NAME, SCHEME_CATEGORY, SCHEME_CODE, SCHEME_MODE, SCHEME_NAME)
+    )
+
+    
+INSERT INTO public.app_user(
+	user_id, user_aadhaar, user_can, user_name, user_pan, user_pwd, user_status, user_type)
+	VALUES ('saparanj', '250741829684', '17292QZA74', 'Sachin Arvind Paranjape', 'AGSPP9137D', 'saparanj', 1, 'A');
+	
+commit;
+
