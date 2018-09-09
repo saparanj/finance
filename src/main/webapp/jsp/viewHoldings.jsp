@@ -47,6 +47,7 @@
 				<th>NAV</th>
 				<th>Cost</th>
 				<th>Current Amount</th>
+				<th>Profit/Loss</th>
 				<th>Base Units</th>
 				<th>Base NAV</th>
 				<th>Base NAV Date</th>
@@ -62,6 +63,7 @@
 				<td>${listValue.lastNAV}</td>
 				<td>${listValue.totalAmount}</td>
 				<td>${listValue.currentAmout}</td>
+				<td>${listValue.profit}</td>
 				<td>${listValue.baseUnits}</td>
 				<td>${listValue.baseNAV}</td>
 				<td>${listValue.baseNAVDate}</td>

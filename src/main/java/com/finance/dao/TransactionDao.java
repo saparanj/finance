@@ -34,4 +34,15 @@ public class TransactionDao {
 		List<FolioTransaction> results = cr.list();
 		return results;
 	}
+	public List<FolioTransaction> fetchAllTransactions(Session session) {
+		Criteria cr = session.createCriteria(FolioTransaction.class);
+		cr.addOrder(Order.asc("fundName"));
+		cr.addOrder(Order.asc("schemeName"));
+		cr.addOrder(Order.desc("schemeCategory"));
+		cr.addOrder(Order.asc("schemeMode"));
+		cr.addOrder(Order.asc("folioNumber"));
+		cr.addOrder(Order.desc("transactionDate"));
+		List<FolioTransaction> results = cr.list();
+		return results;
+	}
 }

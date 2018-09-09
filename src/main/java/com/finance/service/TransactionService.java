@@ -53,6 +53,21 @@ public class TransactionService extends GenericService {
 		}
 		return transactionList;
 	}
+
+	@Transactional
+	public List<MutualFundTransactionVO> fetchAllTransactions() {
+		//FolioId folioId = 
+		List<MutualFundTransactionVO> transactionList = new LinkedList<MutualFundTransactionVO>();
+		List<FolioTransaction> transactions = transactioDao.fetchAllTransactions(getCurrentHibernateSession());
+		MutualFundTransactionVO vo = null;
+		for(int i=0;i<transactions.size();i++) {
+			FolioTransaction transaction = (FolioTransaction)transactions.get(i);
+			vo =FundProcessor.mapFolioTransactionToVO(transaction);
+			transactionList.add(vo);
+		}
+		return transactionList;
+	}
+	
 	
 	@Transactional
 	public void addTransaction(MutualFundTransactionVO vo) {

@@ -31,7 +31,7 @@ public class HoldingVO {
 	private double baseUnits;
 	
 	private double currentAmout;
-	
+	private double profit;
 	
 	
 	public String getUserId() {
@@ -153,6 +153,12 @@ public class HoldingVO {
 	}
 	public void setCurrentAmout(double currentAmout) {
 		this.currentAmout = currentAmout;
+	}
+	public double getProfit() {
+		return profit;
+	}
+	public void setProfit(double profit) {
+		this.profit = profit;
 	}
 	
 

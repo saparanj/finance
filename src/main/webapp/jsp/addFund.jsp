@@ -10,7 +10,7 @@
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Fund Name(*)<br><form:errors path="fundName" cssClass="error"/></span> 
-		<form:input class="form-control" path="fundName" type="text" maxlength="10"/>
+		<form:input class="form-control" path="fundName" type="text" maxlength="50"/>
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Scheme Code(*)<br><form:errors path="schemeCode" cssClass="error"/></span>
@@ -18,7 +18,7 @@
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Scheme Name(*)<br><form:errors path="schemeName" cssClass="error"/></span>
-		<form:input class="form-control"  type="text" path="schemeName" maxlength="10"/>
+		<form:input class="form-control"  type="text" path="schemeName" maxlength="50"/>
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Scheme Category(*)<br><form:errors path="schemeCategory" cssClass="error"/></span>

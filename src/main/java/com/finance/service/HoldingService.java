@@ -84,6 +84,7 @@ public class HoldingService extends GenericService{
 				vo.setBaseUnits(Utils.formatDouble_4(fund.getBaseUnits()));
 				vo.setBaseNAVDate(fund.getBaseNavDate());
 				vo.setCurrentAmout(Utils.formatDouble_2(vo.getTransactedUnits()*vo.getLastNAV()));
+				vo.setProfit(Utils.formatDouble_2(vo.getCurrentAmout()-vo.getTotalAmount()));
 				holdingList.add(vo);
 			}
 		}

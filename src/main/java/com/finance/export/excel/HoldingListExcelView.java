@@ -54,10 +54,11 @@ public class HoldingListExcelView extends AbstractXlsView {
 		excelHeader.createCell(7).setCellValue("NAV");
 		excelHeader.createCell(8).setCellValue("Amount");
 		excelHeader.createCell(9).setCellValue("Purchase Cost");
-		excelHeader.createCell(10).setCellValue("Base Units");
-		excelHeader.createCell(11).setCellValue("Base NAV");
-		excelHeader.createCell(12).setCellValue("Base NAV Date");
-		for(int i=0;i<13;i++) {
+		excelHeader.createCell(10).setCellValue("Profit/Loss");
+		excelHeader.createCell(11).setCellValue("Base Units");
+		excelHeader.createCell(12).setCellValue("Base NAV");
+		excelHeader.createCell(13).setCellValue("Base NAV Date");
+		for(int i=0;i<14;i++) {
 			excelHeader.getCell(i).setCellStyle(headerStyle);
 			excelSheet.autoSizeColumn(i);
 		}
@@ -85,11 +86,13 @@ public class HoldingListExcelView extends AbstractXlsView {
 			excelRow.createCell(9).setCellType(CellType.NUMERIC);
 			excelRow.createCell(9).setCellValue(holding.getTotalAmount());
 			excelRow.createCell(10).setCellType(CellType.NUMERIC);
-			excelRow.createCell(10).setCellValue(holding.getBaseUnits());
+			excelRow.createCell(10).setCellValue(holding.getProfit());
 			excelRow.createCell(11).setCellType(CellType.NUMERIC);
-			excelRow.createCell(11).setCellValue(holding.getBaseNAV());
-			excelRow.createCell(12).setCellValue(holding.getBaseNAVDate());
-			for(int j=0;j<13;j++) {
+			excelRow.createCell(11).setCellValue(holding.getBaseUnits());
+			excelRow.createCell(12).setCellType(CellType.NUMERIC);
+			excelRow.createCell(12).setCellValue(holding.getBaseNAV());
+			excelRow.createCell(13).setCellValue(holding.getBaseNAVDate());
+			for(int j=0;j<14;j++) {
 				excelSheet.autoSizeColumn(j); 
 			}
 		}

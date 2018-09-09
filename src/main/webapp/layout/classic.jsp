@@ -64,8 +64,7 @@
 		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transactions
 		        <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="${pageContext.request.contextPath}<%=URLUtils.encodeURL(session,response,"/viewTransactions.form")%>">View Transactions</a></li>
-		          <li><a href="${pageContext.request.contextPath}<%=URLUtils.encodeURL(session,response,"/addTransaction.form")%>">Add Transaction</a></li>
+		          <li><a href="${pageContext.request.contextPath}<%=URLUtils.encodeURL(session,response,"/exportTransactionListExcel.form")%>">Export Transactions</a></li>
 		        </ul>
 		      </li>
 		      <li><a href="${pageContext.request.contextPath}<%=URLUtils.encodeURL(session,response,"/viewHoldingInput.form")%>">View Holdings</a></li>

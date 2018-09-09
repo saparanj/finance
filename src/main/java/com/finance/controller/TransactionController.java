@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finance.common.Constants;
 import com.finance.common.exception.BusinessException;
@@ -150,5 +151,12 @@ public class TransactionController {
 		return "viewTransaction";
 	}
 
+ 	@RequestMapping(value = "/exportTransactionListExcel.form", method = RequestMethod.GET)
+	public ModelAndView exportHoldingListExcel(Model theModel,@Valid @ModelAttribute("holdingInput") HoldingInputForm form,
+			BindingResult bindingResult, HttpServletRequest req) {
+			List<MutualFundTransactionVO> transactionList = transactionService.fetchAllTransactions();
+			return new ModelAndView("TransactionListExcel", "transactionList", transactionList);
+	}
+	
 	
 }

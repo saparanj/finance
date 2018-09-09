@@ -5,4 +5,7 @@
   	<bean id="HoldingListExcel"
 	   	class="com.finance.export.excel.HoldingListExcelView">
 	</bean>
+  	<bean id="TransactionListExcel"
+	   	class="com.finance.export.excel.TransactionListExcelView">
+	</bean>
 </beans>
