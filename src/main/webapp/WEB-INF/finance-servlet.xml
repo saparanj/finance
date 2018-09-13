@@ -5,6 +5,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	 xmlns:jee="http://www.springframework.org/schema/jee"
 	  xmlns:tx="http://www.springframework.org/schema/tx"
+	  xmlns:aop = "http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
     	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -15,11 +16,15 @@
     	http://www.springframework.org/schema/jee
     	http://www.springframework.org/schema/jee/spring-jee.xsd
     	http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop 
+   		http://www.springframework.org/schema/aop/spring-aop.xsd"
         >
 
 	<!-- Step 3: Add support for component scanning -->
 	<context:component-scan base-package="com.finance" />
+	
+	<aop:aspectj-autoproxy/>
 	
 	<tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
 
