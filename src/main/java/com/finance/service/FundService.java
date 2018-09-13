@@ -79,6 +79,22 @@ public class FundService  extends GenericService {
 	}
 
 	@Transactional
+	public MutualFundVO fetchFund(MutualFundVO fundVO) {
+		FundId fundId = new FundId();
+		fundId.setFundCode(fundVO.getFundCode());
+		fundId.setFundName(fundVO.getFundName());
+		fundId.setSchemeCategory(fundVO.getSchemeCategory());
+		fundId.setSchemeCode(fundVO.getSchemeCode());
+		fundId.setSchemeMode(fundVO.getSchemeMode());
+		fundId.setSchemeName(fundVO.getSchemeName());
+
+		FundMaster fundMaster = null;
+		fundMaster = fundDao.fetchFund(getCurrentHibernateSession(), fundId);
+		MutualFundVO vo = FundProcessor.mapFundMasterToVO(fundMaster);
+		return vo;
+	}
+
+	@Transactional
 	public List<MutualFundVO> fetchAllFunds() {
 		List<MutualFundVO> fundList = new LinkedList();
 		List<FundMaster> funds = fundDao.fetchAllFunds(getCurrentHibernateSession());

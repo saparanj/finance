@@ -122,6 +122,13 @@ public class FundController {
 	public String addFolio(Model theModel,@Valid @ModelAttribute("fundSelection") FundSelection form,
 			BindingResult bindingResult,HttpServletRequest req){
 		FundForm fundForm = FundProcessor.mapFundSelectionToFundForm(form);
+		MutualFundVO vo = FundProcessor.mapFundToVO(fundForm);
+		MutualFundVO voPersited = fundService.fetchFund(vo);
+		fundForm.setBaseUnits(voPersited.getBaseUnits());
+		fundForm.setBaseNav(voPersited.getBaseNav());
+		fundForm.setBaseNavDate(voPersited.getBaseNavDate());
+		fundForm.setLatestNav(voPersited.getLatestNav());
+		fundForm.setLatestNavDate(voPersited.getLatestNavDate());
 		theModel.addAttribute("fund",fundForm);
 		return "updateFund";
 	}

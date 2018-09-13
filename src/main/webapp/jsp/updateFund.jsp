@@ -7,38 +7,27 @@
 	<div class=	"success">${fund.successMessage}</div>
   		
 	<div class="input-group">
-		<span class="input-group-addon">Fund Code(*)<br><form:errors path="fundCode" cssClass="error"/></span> 
-		<form:input class="form-control" path="fundCode" readlonly="true" type="text" maxlength="10"/>
+		<span class="input-group-addon">Fund Code(*)<br><form:errors path="fundCode"  cssClass="error"/></span> 
+		<form:input class="form-control" path="fundCode" type="text" readonly="true" />
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Fund Name(*)<br><form:errors path="fundName" cssClass="error"/></span> 
-		<form:input class="form-control" path="fundName" readlonly="true" type="text" maxlength="10"/>
+		<form:input class="form-control" path="fundName" readonly="true"  type="text" maxlength="10"/>
 	</div>
 	<div class="input-group">
-		<span class="input-group-addon">Scheme Code(*)<br><form:errors path="schemeCode" cssClass="error"/></span>
-		<form:input class="form-control"  type="text" readlonly="true" path="schemeCode" maxlength="10"/>
+		<span class="input-group-addon">Scheme Code(*)<br><form:errors path="schemeCode"  cssClass="error"/></span>
+		<form:input class="form-control"  type="text" readonly="true"  path="schemeCode" maxlength="10"/>
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Scheme Name(*)<br><form:errors path="schemeName" cssClass="error"/></span>
-		<form:input class="form-control"  type="text" readlonly="true" path="schemeName" maxlength="10"/>
+		<form:input class="form-control"  type="text" readonly="true"  path="schemeName" maxlength="10"/>
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Scheme Category(*)<br><form:errors path="schemeCategory" cssClass="error"/></span>
-		<form:input class="form-control"  type="text" readlonly="true" path="schemeCategory" maxlength="10"/>		</div>
+		<form:input class="form-control"  type="text" readonly="true"  path="schemeCategory" maxlength="10"/>		</div>
 	<div class="input-group">
 		<span class="input-group-addon">Scheme Mode(*)<br><form:errors path="schemeMode" cssClass="error"/></span>
-		<form:input class="form-control"  type="text" readlonly="true" path="schemeMode" maxlength="10"/>		</div>
-	</div>
-	<div class="input-group">
-		<span class="input-group-addon">Latest NAV(*)<br><form:errors path="latestNav" cssClass="error"/></span>
-		<form:input class="form-control"  type="text" path="latestNav" maxlength="20"/>
-	</div>
-	<div class="input-group date" data-provide="datepicker">
-		<span class="input-group-addon">Latest NAV Date(*)<br><form:errors path="latestNavDate" cssClass="error"/></span>
-		<form:input type="text" class="form-control" path="latestNavDate" maxlength="12" readlonly="true"/>
-		<div class="input-group-addon">
-        	<span class="glyphicon glyphicon-th"></span>
-    	</div>
+		<form:input class="form-control"  type="text" readonly="true"  path="schemeMode" maxlength="10"/>		</div>
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon">Base NAV(*)<br><form:errors path="baseNav" cssClass="error"/></span>
@@ -50,7 +39,18 @@
 	</div>
 	<div class="input-group date" data-provide="datepicker">
 		<span class="input-group-addon">Base NAV Date(*)<br><form:errors path="baseNavDate" cssClass="error"/></span>
-		<form:input type="text" class="form-control" path="baseNavDate" maxlength="12" readlonly="true"/>
+		<form:input type="text" class="form-control" path="baseNavDate" maxlength="12" readonly="true" />
+		<div class="input-group-addon">
+        	<span class="glyphicon glyphicon-th"></span>
+    	</div>
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon">Latest NAV(*)<br><form:errors path="latestNav" cssClass="error"/></span>
+		<form:input class="form-control"  type="text" path="latestNav" maxlength="20"/>
+	</div>
+	<div class="input-group date" data-provide="datepicker">
+		<span class="input-group-addon">Latest NAV Date(*)<br><form:errors path="latestNavDate" cssClass="error"/></span>
+		<form:input type="text" class="form-control" path="latestNavDate" maxlength="12" readonly="true" />
 		<div class="input-group-addon">
         	<span class="glyphicon glyphicon-th"></span>
     	</div>
