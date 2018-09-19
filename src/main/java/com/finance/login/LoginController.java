@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.annotation.Scope;
@@ -24,6 +26,8 @@ import com.finance.service.LoginService;
 @Scope("prototype")
 public class LoginController { 
 	
+	private static Logger logger = LogManager.getLogger(LoginController.class);
+	
 	// Add Init Binder to trim Strings. 
 	// If String is all whitespace then it will be set to null with param as true
 	@Autowired
@@ -41,19 +45,20 @@ public class LoginController {
 	
 	@RequestMapping(value="/login.form",method=RequestMethod.GET)
 	public String showLoginPage(Model theModel,HttpServletRequest req) {
+		logger.debug("Entering showLoginPage");
 		HttpSession session = req.getSession(false);
 		if(session!=null){
 			session.invalidate();
 		}
 		theModel.addAttribute("user", new LoginForm());
-
+		logger.debug("Exiting showLoginPage");
 		return "login";
 	}
 
 	@RequestMapping(value="/processLogin.form", method=RequestMethod.POST)
 	public String showUserHome(@Valid @ModelAttribute("user") LoginForm form,
 								BindingResult bindingResult, HttpServletRequest req) {
-		System.out.println(form.toString());
+		logger.debug("Entering showUserHome");
 		if(bindingResult.hasErrors()) {
 			return "login";
 		}else {
@@ -68,6 +73,7 @@ public class LoginController {
 				session = req.getSession(true);
 				SessionUtils.setRandomKey(session);
 				SessionUtils.setSessionAttribute(session, Constants.SESSION_USER_KEY, userInSession);
+				logger.debug("Exiting showUserHome");
 				return "userHome";
 			}else{
 				//bindingResult.addAllErrors(Errors.reject("Invalid Credentials"));
@@ -75,6 +81,7 @@ public class LoginController {
 				form.setUserpassword(null);
 				form.setErrorMessage("Invalid Credentials");
 				//bindingResult.rejectValue("errorMessage", "error.authentication", "Invalid Credentials");
+				logger.debug("Exiting showUserHome");
 				return "login";
 			}
 		}
@@ -82,12 +89,14 @@ public class LoginController {
 
 	@RequestMapping(value="/logout.form", method=RequestMethod.GET)
 	public String logout(Model theModel,HttpServletRequest req){
+		logger.debug("Entering logout");
 		HttpSession session = req.getSession(false);
 		if(session!=null && SessionUtils.getSessionAttribute(session, Constants.SESSION_USER_KEY)!=null){
 			SessionUtils.removeAttribute(session,  Constants.SESSION_USER_KEY);
 			session.invalidate();
 		}
 		theModel.addAttribute("user", new LoginForm());
+		logger.debug("Exiting logout");
 		return "login";
 	}
 

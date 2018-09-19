@@ -7,5 +7,10 @@ public class Constants {
 	public static final String DECIMAL_4 = "#.####";
 	public static final String DECIMAL_2 = "#.##";
 	
+	public static final String LOGIN_URL="login.form";
+	public static final String LOGIN_SUBMIT_URL="processLogin.form";
+	public static final String HOME_URL="home.jsp";
+	
+	
 
 }
