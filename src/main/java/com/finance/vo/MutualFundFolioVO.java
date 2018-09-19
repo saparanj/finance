@@ -16,6 +16,9 @@ public class MutualFundFolioVO {
 	private String folioHolder; // userid
 	private String folioCanNumber; //CAN
 	private String folioPanNumber; //Pan
+	private double baseNav;
+	private Date baseNavDate;
+	private double baseUnits;
 	private String folioAadhaarNumber; //Aadhaar Number
 	private String nominationStatus; //Y/N
 	private String firstNominee;
@@ -154,7 +157,22 @@ public class MutualFundFolioVO {
 	public void setFolioKey(String folioKey) {
 		this.folioKey = folioKey;
 	}
-	
-	
-
+	public double getBaseNav() {
+		return baseNav;
+	}
+	public void setBaseNav(double baseNav) {
+		this.baseNav = baseNav;
+	}
+	public Date getBaseNavDate() {
+		return baseNavDate;
+	}
+	public void setBaseNavDate(Date baseNavDate) {
+		this.baseNavDate = baseNavDate;
+	}
+	public double getBaseUnits() {
+		return baseUnits;
+	}
+	public void setBaseUnits(double baseUnits) {
+		this.baseUnits = baseUnits;
+	}
 }

@@ -19,6 +19,16 @@ public class FolioMaster {
 	
 	@Column(name = "FOLIO_HOLDER") // Direct / Regular
 	private String folioHolder; // userid
+
+	@Column(name = "BASE_UNITS") 
+	private double baseUnits;
+	
+	@Column(name = "BASE_NAV") 
+	private double baseNav;
+	
+	@Column(name = "BASE_NAV_DATE") 
+	@Temporal(TemporalType.DATE)
+	private Date baseNavDate;
 	
 	@Column(name = "FOLIO_CAN_NUMBER") // Direct / Regular
 	private String folioCanNumber; //CAN
@@ -168,6 +178,30 @@ public class FolioMaster {
 
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
+	}
+
+	public double getBaseNav() {
+		return baseNav;
+	}
+
+	public void setBaseNav(double baseNav) {
+		this.baseNav = baseNav;
+	}
+
+	public Date getBaseNavDate() {
+		return baseNavDate;
+	}
+
+	public void setBaseNavDate(Date baseNavDate) {
+		this.baseNavDate = baseNavDate;
+	}
+
+	public double getBaseUnits() {
+		return baseUnits;
+	}
+
+	public void setBaseUnits(double baseUnits) {
+		this.baseUnits = baseUnits;
 	}
 	
 	

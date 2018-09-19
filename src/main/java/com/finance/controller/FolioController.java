@@ -29,6 +29,7 @@ import com.finance.form.FolioForm;
 import com.finance.form.FolioSelection;
 import com.finance.form.FundForm;
 import com.finance.form.FundSelection;
+import com.finance.form.TransactionForm;
 import com.finance.processor.FundProcessor;
 import com.finance.service.FolioService;
 import com.finance.service.FundService;
@@ -118,4 +119,38 @@ public class FolioController {
 		theModel.addAttribute("folioSelection",new FolioSelection());
 		return "viewFolios";
 	}
+	
+
+	@RequestMapping(value="/updateFolio.form",method=RequestMethod.POST)
+	public String updateFolio(Model theModel,@Valid @ModelAttribute("folioSelection") FolioSelection form,
+			BindingResult bindingResult,HttpServletRequest req){
+		FolioForm folioForm = FundProcessor.mapFolioSelectionToFolioForm(form);
+		MutualFundFolioVO vo =  FundProcessor.mapFundFolioToVO(folioForm);
+		MutualFundFolioVO vofromDB = null;
+		try {
+			vofromDB = folioService.fetchFolio(vo);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		folioForm = FundProcessor.mapMutualFundVOToFolioForm(vofromDB);
+		theModel.addAttribute("folioForm",folioForm);
+		return "viewUpdateFolio";
+	}
+	@RequestMapping(value="/processUpdateFolio.form",method=RequestMethod.POST)
+	public String processUpdateFolio(@Valid @ModelAttribute("folioForm") FolioForm form,
+			BindingResult bindingResult, HttpServletRequest req){
+		HttpSession session = req.getSession(false);
+		SessionUser user = (SessionUser)SessionUtils.getSessionAttribute(session, Constants.SESSION_USER_KEY);
+		MutualFundFolioVO vo =  FundProcessor.mapFundFolioToVO(form);
+		vo.setUpdatedBy(user.getUserId());
+		try {
+			folioService.updateFolio(vo);
+		} catch (BusinessException e) {
+			form.setErrorMessage(e.getExceptionMessage());
+			return "viewUpdateFolio";
+		}
+		return "updateFolioConfirmation";
+	}
+	
 }

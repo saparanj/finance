@@ -34,6 +34,27 @@ public class FolioService   extends GenericService {
 	}
 	
 	@Transactional
+	public MutualFundFolioVO fetchFolio(MutualFundFolioVO folioVO) throws BusinessException {
+		MutualFundFolioVO vo = null;
+		FolioId folioId = new FolioId();
+		folioId.setFundCode(folioVO.getFundCode());
+		folioId.setFundName(folioVO.getFundName());
+		folioId.setSchemeCategory(folioVO.getSchemeCategory());
+		folioId.setSchemeCode(folioVO.getSchemeCode());
+		folioId.setSchemeMode(folioVO.getSchemeMode());
+		folioId.setSchemeName(folioVO.getSchemeName());
+		folioId.setFolioNumber(folioVO.getFolioNumber());
+		FolioMaster folioMaster = null;
+		folioMaster = folioDao.fetchFolio(getCurrentHibernateSession(), folioId);
+		if(folioMaster!=null) {
+			vo = FundProcessor.mapFolioMasterToVO(folioMaster);
+		}else {
+			throw new BusinessException("Folio does not Exist");
+		}
+		return vo;
+	}
+	
+	@Transactional
 	public void addFolio(MutualFundFolioVO folioVO) throws BusinessException {
 			
 		FolioId folioId = new FolioId();
@@ -53,11 +74,44 @@ public class FolioService   extends GenericService {
 		}
 		folioMaster = new FolioMaster();
 		folioMaster.setFolioHolder(folioVO.getFolioHolder());
+		folioMaster.setBaseNav(folioVO.getBaseNav());
+		folioMaster.setBaseNavDate(folioVO.getBaseNavDate());
+		folioMaster.setBaseUnits(folioVO.getBaseUnits());
 		folioMaster.setFolioId(folioId);
 		folioMaster.setCreatedBy(folioVO.getCreatedBy());
 		folioMaster.setCreateDate(folioVO.getCreateDate());
 		folioDao.saveFolio(getCurrentHibernateSession(), folioMaster);
 	}
+	
+	@Transactional
+	public void updateFolio(MutualFundFolioVO folioVO) throws BusinessException {
+			
+		FolioId folioId = new FolioId();
+		folioId.setFundCode(folioVO.getFundCode());
+		folioId.setFundName(folioVO.getFundName());
+		folioId.setSchemeCategory(folioVO.getSchemeCategory());
+		folioId.setSchemeCode(folioVO.getSchemeCode());
+		folioId.setSchemeMode(folioVO.getSchemeMode());
+		folioId.setSchemeName(folioVO.getSchemeName());
+		folioId.setFolioNumber(folioVO.getFolioNumber());
+		
+
+		FolioMaster folioMaster = null;
+		folioMaster = folioDao.fetchFolio(getCurrentHibernateSession(), folioId);
+		if(folioMaster!=null) {
+			folioMaster.setFolioHolder(folioVO.getFolioHolder());
+			folioMaster.setBaseNav(folioVO.getBaseNav());
+			folioMaster.setBaseNavDate(folioVO.getBaseNavDate());
+			folioMaster.setBaseUnits(folioVO.getBaseUnits());
+			folioMaster.setFolioId(folioId);
+			folioMaster.setUpdateDate(new java.util.Date());
+			folioMaster.setUpdatedBy(folioVO.getUpdatedBy());
+			folioDao.saveFolio(getCurrentHibernateSession(), folioMaster);
+		}else {
+			throw new BusinessException("Folio does not Exist");
+		}
+	}
+
 	
 	@Transactional
 	public List<MutualFundFolioVO> fetchAllFunds() {

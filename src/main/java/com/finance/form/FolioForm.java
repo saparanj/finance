@@ -24,7 +24,14 @@ public class FolioForm {
 	@NotNull(message=" is required")
 	@Size(min=1, max=50, message=" should be at least 1 characters and at the most 50 characters")
 	private String folioNumber;
-
+	@NotNull(message=" is required")
+	private double baseNav;
+	@NotNull(message=" is required")
+	private Date baseNavDate;
+	@NotNull(message=" is required")
+	private double baseUnits;
+	
+	
 	@NotNull(message=" is required")
 	@Size(min=1, max=10, message=" should be at least 1 characters and at the most 50 characters")
 	private String folioHolder; // userid
@@ -209,6 +216,30 @@ public class FolioForm {
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+	
+	public double getBaseNav() {
+		return baseNav;
+	}
+
+	public void setBaseNav(double baseNav) {
+		this.baseNav = baseNav;
+	}
+
+	public Date getBaseNavDate() {
+		return baseNavDate;
+	}
+
+	public void setBaseNavDate(Date baseNavDate) {
+		this.baseNavDate = baseNavDate;
+	}
+
+	public double getBaseUnits() {
+		return baseUnits;
+	}
+
+	public void setBaseUnits(double baseUnits) {
+		this.baseUnits = baseUnits;
 	}
 
 	@Override

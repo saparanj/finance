@@ -66,6 +66,7 @@ public class FundProcessor {
 		vo.setSchemeMode(fund.getFundId().getSchemeMode());
 		vo.setSchemeName(fund.getFundId().getSchemeName());
 		vo.setBaseNav(fund.getBaseNav());
+		vo.setBaseUnits(fund.getBaseUnits());
 		vo.setLatestNav(fund.getLatestNav());
 		vo.setBaseNavDate(fund.getBaseNavDate());
 		vo.setLatestNavDate(fund.getLatestNavDate());
@@ -98,10 +99,14 @@ public class FundProcessor {
 		vo.setSchemeCode(folio.getFolioId().getSchemeCode());
 		vo.setSchemeMode(folio.getFolioId().getSchemeMode());
 		vo.setSchemeName(folio.getFolioId().getSchemeName());
+		vo.setBaseNav(folio.getBaseNav());
+		vo.setBaseNavDate(folio.getBaseNavDate());
+		vo.setBaseUnits(folio.getBaseUnits());
 		vo.setCreatedBy(folio.getCreatedBy());
 		vo.setUpdatedBy(folio.getUpdatedBy());
 		vo.setCreateDate(folio.getCreateDate());
 		vo.setUpdateDate(folio.getUpdateDate());
+		vo.setFolioHolder(folio.getFolioHolder());
 		String folioKey = new StringBuffer("")
 				.append(folio.getFolioId().getFundCode())
 				.append("##")
@@ -149,7 +154,20 @@ public class FundProcessor {
 		
 	}
 	
-	
+	public static FolioForm mapFolioSelectionToFolioForm(FolioSelection form) {
+		String selectedFundKey = form.getFolioSelectionKey();
+		String[] str = selectedFundKey.split("##");
+		FolioForm folioForm = new FolioForm();
+		folioForm.setFundCode(str[0]);
+		folioForm.setFundName(str[1]);
+		folioForm.setSchemeCode(str[2]);
+		folioForm.setSchemeName(str[3]);
+		folioForm.setSchemeCategory(str[4]);
+		folioForm.setSchemeMode(str[5]);
+		folioForm.setFolioNumber(str[6]);
+		return folioForm;
+		
+	}
 	
 	public static TransactionForm mapFolioSelectionToTransactionForm(FolioSelection form) {
 		String selectedFundKey = form.getFolioSelectionKey();
@@ -193,7 +211,31 @@ public class FundProcessor {
 		vo.setFolioPanNumber(form.getFolioPanNumber());
 		vo.setFolioHolder(form.getFolioHolder());
 		vo.setFolioAadhaarNumber(form.getFolioAadhaarNumber());
+		vo.setBaseNav(form.getBaseNav());
+		vo.setBaseNavDate(form.getBaseNavDate());
+		vo.setBaseUnits(form.getBaseUnits());
 		return vo;
+	}
+	
+	public static FolioForm mapMutualFundVOToFolioForm(MutualFundFolioVO vo) {
+		FolioForm form = new FolioForm();
+		form.setFundCode(vo.getFundCode());
+		form.setFundName(vo.getFundName());
+		form.setSchemeCategory(vo.getSchemeCategory());
+		form.setSchemeCode(vo.getSchemeCode());
+		form.setSchemeMode(vo.getSchemeMode());
+		form.setSchemeName(vo.getSchemeName());
+		form.setFolioNumber(vo.getFolioNumber());
+		form.setCreatedBy(vo.getCreatedBy());
+		form.setCreateDate(vo.getCreateDate());
+		form.setFolioCanNumber(vo.getFolioCanNumber());
+		form.setFolioPanNumber(vo.getFolioPanNumber());
+		form.setFolioHolder(vo.getFolioHolder());
+		form.setFolioAadhaarNumber(vo.getFolioAadhaarNumber());
+		form.setBaseNav(vo.getBaseNav());
+		form.setBaseNavDate(vo.getBaseNavDate());
+		form.setBaseUnits(vo.getBaseUnits());
+		return form;
 	}
 	
 	public static MutualFundTransactionVO mapFundTransactionToVO(TransactionForm form) {

@@ -27,6 +27,7 @@
 		<form:errors path="folioSelectionKey" cssClass="error"/>
 		<br>
 		<div align="center">
+			<input type="submit"  class="btn btn-primary" disabled id="updateFolioButton"  name = "updateFolioButton" value="Update a Folio" />
 			<input type="submit"  class="btn btn-primary" disabled id="addTransactionButton" name = "addFolioButton" value="Add Transacion for a Folio" />
 			<input type="submit"  class="btn btn-primary" disabled id="viewTransactionsButton"  name = "viewTransactionsButton" value="View Transactions for a Folio" />
 		</div>
@@ -43,6 +44,7 @@ $(function(){
 		$("#folioSelectionKey").val(this.value);
 		$("#addTransactionButton").removeAttr("disabled");
 		$("#viewTransactionsButton").removeAttr("disabled");
+		$("#updateFolioButton").removeAttr("disabled");
 	});
 
 	$("#addTransactionButton").click(function(){
@@ -54,5 +56,12 @@ $(function(){
 		$("#folioSelection").attr("action","viewTransaction.form");	
 		$("#folioSelection").submit();
 	});
+
+	$("#updateFolioButton").click(function(){
+		$("#folioSelection").attr("action","updateFolio.form");	
+		$("#folioSelection").submit();
+	});
+	
+
 });
 </Script>

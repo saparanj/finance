@@ -56,6 +56,20 @@
     <put-attribute name="body" value="/jsp/addFolio.jsp" />
   </definition>
   
+  
+  <definition name="viewUpdateFolio" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund Folio" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/updateFolio.jsp" />
+  </definition>
+  
+  
+  <definition name="updateFolioConfirmation" extends="common">
+    <put-attribute name="title" value="Add Mutual Fund Folio" />
+    <put-attribute name="menu" value="/layout/menu.jsp" />
+    <put-attribute name="body" value="/jsp/updateFolioConfirmation.jsp" />
+  </definition>
+
   <definition name="fundFolioAddConfirmation" extends="common">
     <put-attribute name="title" value="Add Mutual Fund Folio" />
     <put-attribute name="menu" value="/layout/menu.jsp" />
