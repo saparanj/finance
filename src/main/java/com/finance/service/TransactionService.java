@@ -15,7 +15,9 @@ import com.finance.dao.TransactionDao;
 import com.finance.entities.FolioHoldings;
 import com.finance.entities.FolioId;
 import com.finance.entities.FolioTransaction;
+import com.finance.entities.FolioTransactionAudit;
 import com.finance.form.TransactionForm;
+import com.finance.form.TransactionSelectionForm;
 import com.finance.processor.FundProcessor;
 import com.finance.vo.HoldingVO;
 import com.finance.vo.MutualFundTransactionVO;
@@ -68,6 +70,51 @@ public class TransactionService extends GenericService {
 		return transactionList;
 	}
 	
+	@Transactional
+	public void deleteTransaction(TransactionSelectionForm form) {
+		FolioTransaction transaction = transactioDao.fetchTransaction(getCurrentHibernateSession(), new Long(form.getTransactionKey()));
+		if(transaction!=null) {
+			//Fetch the Holding
+			FolioId folioId = new FolioId();
+			folioId.setFundCode(transaction.getFundCode());
+			folioId.setFundName(transaction.getFundName());
+			folioId.setSchemeCategory(transaction.getSchemeCategory());
+			folioId.setSchemeCode(transaction.getSchemeCode());
+			folioId.setSchemeMode(transaction.getSchemeMode());
+			folioId.setSchemeName(transaction.getSchemeName());
+			folioId.setFolioNumber(transaction.getFolioNumber());
+			FolioHoldings holding = holdingDao.fetchHolding(getCurrentHibernateSession(), folioId);
+			holding.setTransactedUnits(Utils.formatDouble_4(holding.getTransactedUnits()-transaction.getTransactedUnits()));
+			holding.setUpdateDate(new java.util.Date());
+			holding.setTotalAmount(Utils.formatDouble_2(holding.getTotalAmount()-transaction.getTransactionAmount()));
+			
+			//Insert into audit
+			FolioTransactionAudit audit = new FolioTransactionAudit();
+			audit.setTransactionId(transaction.getTransactionId());
+			audit.setFundCode(transaction.getFundCode());
+			audit.setFundName(transaction.getFundName());
+			audit.setSchemeName(transaction.getSchemeName());
+			audit.setSchemeCategory(transaction.getSchemeCategory());
+			audit.setSchemeCode(transaction.getSchemeCode());
+			audit.setSchemeMode(transaction.getSchemeCode());
+			audit.setTransactedUnits(transaction.getTransactedUnits());
+			audit.setTransactionAmount(transaction.getTransactionAmount());
+			audit.setTransactionDate(audit.getTransactionDate());
+			audit.setTransactionMode(transaction.getTransactionMode());
+			audit.setTransactionType(transaction.getTransactionType());
+			audit.setTrasactedNav(transaction.getTrasactedNav());
+			audit.setCreateBy(transaction.getCreateBy());
+			audit.setCreateDate(transaction.getCreateDate());
+			audit.setUpdateBy(transaction.getUpdateBy());
+			audit.setUpdateDate(transaction.getUpdateDate());
+			audit.setFolioNumber(transaction.getFolioNumber());
+			audit.setAuditCreateDate(new java.util.Date());
+			transactioDao.saveFolioTransactionAudit(getCurrentHibernateSession(), audit);
+			transactioDao.saveFolioTransaction(getCurrentHibernateSession(), transaction);
+			transactioDao.deleteFolioTransaction(getCurrentHibernateSession(), transaction);
+			holdingDao.saveOrUpdateFolioHoldings(getCurrentHibernateSession(), holding);
+		}
+	}
 	
 	@Transactional
 	public void addTransaction(MutualFundTransactionVO vo) {

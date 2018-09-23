@@ -40,6 +40,7 @@ public class FundProcessor {
 
 	public static MutualFundTransactionVO mapFolioTransactionToVO(FolioTransaction transaction) {
 		MutualFundTransactionVO vo = new MutualFundTransactionVO();
+		vo.setTransactionId(transaction.getTransactionId().longValue());
 		vo.setFolioNumber(transaction.getFolioNumber());
 		vo.setFundCode(transaction.getFundCode());
 		vo.setFundName(transaction.getFundName());
@@ -53,6 +54,7 @@ public class FundProcessor {
 		vo.setTransactionType(transaction.getTransactionType());
 		vo.setTransactionMode(transaction.getTransactionMode());
 		vo.setTrasactedNav(transaction.getTrasactedNav());
+		
 		return vo;
 	}
 

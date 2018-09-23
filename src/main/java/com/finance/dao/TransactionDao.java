@@ -10,17 +10,25 @@ import org.hibernate.query.Query;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import com.finance.entities.AppUser;
 import com.finance.entities.FolioId;
 import com.finance.entities.FolioMaster;
 import com.finance.entities.FolioTransaction;
+import com.finance.entities.FolioTransactionAudit;
 
 @Repository
 @Scope("prototype")
 public class TransactionDao {
+	public void deleteFolioTransaction(Session session, FolioTransaction folioTransaction) {
+		session.delete(folioTransaction);
+	}
 	public void saveFolioTransaction(Session session, FolioTransaction folioTransaction) {
 		session.save(folioTransaction);
 	}
 	
+	public void saveFolioTransactionAudit(Session session, FolioTransactionAudit folioTransactionAudit) {
+		session.save(folioTransactionAudit);
+	}
 	public List<FolioTransaction> fetchTransactionsForFolio(Session session,FolioId folioId) {
 		Criteria cr = session.createCriteria(FolioTransaction.class);
 		cr.add(Restrictions.eq("fundCode", folioId.getFundCode()));
@@ -44,5 +52,10 @@ public class TransactionDao {
 		cr.addOrder(Order.desc("transactionDate"));
 		List<FolioTransaction> results = cr.list();
 		return results;
+	}
+	
+	public FolioTransaction fetchTransaction(Session session,Long transactionId) {
+		FolioTransaction transaction = (FolioTransaction)session.get(FolioTransaction.class, transactionId);
+		return transaction;
 	}
 }

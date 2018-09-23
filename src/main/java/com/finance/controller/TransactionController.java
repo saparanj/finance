@@ -34,6 +34,7 @@ import com.finance.form.FundForm;
 import com.finance.form.FundSelection;
 import com.finance.form.HoldingInputForm;
 import com.finance.form.TransactionForm;
+import com.finance.form.TransactionSelectionForm;
 import com.finance.processor.FundProcessor;
 import com.finance.service.FolioService;
 import com.finance.service.TransactionService;
@@ -158,5 +159,12 @@ public class TransactionController {
 			return new ModelAndView("TransactionListExcel", "transactionList", transactionList);
 	}
 	
+ 	@RequestMapping(value = "/deleteTransaction.form", method = RequestMethod.POST)
+ 	public String deleteTransaction(Model theModel,@Valid @ModelAttribute("transactionSelection") TransactionSelectionForm form,
+			BindingResult bindingResult, HttpServletRequest req) {
+ 		System.out.println(form.getTransactionKey()); 
+ 		transactionService.deleteTransaction(form);
+ 		return "deleteTransactionConfirmation";
+ 	}
 	
 }

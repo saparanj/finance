@@ -80,6 +80,7 @@
 				<value>com.finance.entities.FolioTransaction</value>
 				<value>com.finance.entities.FundMaster</value>
 				<value>com.finance.entities.FolioMaster</value>
+				<value>com.finance.entities.FolioTransactionAudit</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
